@@ -4,6 +4,8 @@ import * as positions from '../services/positions.js';
 import * as leaderboard from '../services/leaderboard.js';
 import * as pyth from '../services/pyth.js';
 import * as referral from '../services/referral.js';
+import * as resolution from '../services/resolution.js';
+import * as bonus from '../services/bonus.js';
 
 const router = express.Router();
 
@@ -178,6 +180,91 @@ router.get('/referrals/:address/has-referrer', async (req, res) => {
         res.json({ success: true, hasReferrer });
     } catch (error) {
         res.json({ success: true, hasReferrer: false });
+    }
+});
+
+// ======================================
+// RESOLUTION ROUTES
+// ======================================
+
+// Get markets pending resolution
+router.get('/markets/pending-resolution', async (req, res) => {
+    try {
+        const pendingMarkets = await resolution.getPendingResolutionMarkets();
+        res.json({ success: true, markets: pendingMarkets });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch pending markets' });
+    }
+});
+
+// Resolve a market using oracle
+router.post('/markets/:id/resolve-oracle', async (req, res) => {
+    const marketId = req.params.id;
+    try {
+        const oracleConfig = await resolution.getMarketOracleConfig(marketId);
+        if (!oracleConfig) {
+            return res.status(400).json({
+                success: false,
+                error: 'Market does not have oracle configuration',
+            });
+        }
+
+        const feedId = '0x' + Buffer.from(oracleConfig.feed_id).toString('hex');
+        const result = await resolution.resolveMarketWithOracle(marketId, feedId);
+
+        res.json({
+            success: true,
+            ...result,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Failed to resolve market',
+        });
+    }
+});
+
+// ======================================
+// BONUS ROUTES
+// ======================================
+
+// Get user bonus balance
+router.get('/bonus/:address', async (req, res) => {
+    try {
+        const balance = await bonus.getBonusBalance(req.params.address);
+        const hasClaimed = await bonus.hasClaimedWelcomeBonus(req.params.address);
+        res.json({
+            success: true,
+            balance,
+            hasClaimed,
+            balanceFormatted: (balance / 1e8).toFixed(2),
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch bonus balance' });
+    }
+});
+
+// Get welcome bonus amount
+router.get('/bonus/welcome-amount', async (req, res) => {
+    try {
+        const amount = await bonus.getWelcomeBonusAmount();
+        res.json({
+            success: true,
+            amount,
+            amountFormatted: (amount / 1e8).toFixed(2),
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch bonus amount' });
+    }
+});
+
+// Get global bonus stats
+router.get('/bonus-stats', async (req, res) => {
+    try {
+        const stats = await bonus.getBonusStats();
+        res.json({ success: true, ...stats });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch bonus stats' });
     }
 });
 
