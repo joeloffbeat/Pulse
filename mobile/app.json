@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "Pulse",
+    "slug": "pulse",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "pulse",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "ios": {
+      "usesAppleSignIn": true,
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pulse.app",
+      "associatedDomains": ["webcredentials:<your-associated-domain>"],
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#0F172A"
+      },
+      "package": "com.pulse.app"
+    },
+    "extra": {
+      "privyAppId": "<APP_ID>",
+      "privyClientId": "<CLIENT_ID>",
+      "passkeyAssociatedDomain": "https://<your-associated-domain>"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-apple-authentication",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "17.5"
+          },
+          "android": {
+            "compileSdkVersion": 35
+          }
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

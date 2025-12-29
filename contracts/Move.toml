@@ -1,0 +1,20 @@
+[package]
+name = "Pulse"
+version = "1.0.0"
+authors = []
+
+[addresses]
+Pulse = "0x78a349ed835712bb5056761595110896ccf3497de4ef8af46acf8cc719b32e8e"
+pyth = "0x7e783b349d3e89cf5931af376ebeadbfab855b3fa239b7ada8f5a92fbea6b387"
+wormhole = "0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625"
+deployer = "0xb31e712b26fd295357355f6845e77c888298636609e93bc9b05f0f604049f434"
+
+[dev-addresses]
+Pulse = "0xCAFE"
+
+[dependencies]
+# Use same revision as Pyth to avoid conflicts
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework/", rev = "6f83bc6d02207298b2dee91133d75538789bf582" }
+AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-stdlib/", rev = "6f83bc6d02207298b2dee91133d75538789bf582" }
+MoveStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/move-stdlib/", rev = "6f83bc6d02207298b2dee91133d75538789bf582" }
+Pyth = { git = "https://github.com/pyth-network/pyth-crosschain.git", subdir = "target_chains/aptos/contracts", rev = "main" }

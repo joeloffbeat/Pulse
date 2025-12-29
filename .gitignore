@@ -1,0 +1,112 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Environment variables (keep .env.example as template)
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+!.env.example
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Mobile (Expo/React Native)
+mobile/.expo/
+mobile/ios/
+mobile/android/
+mobile/*.jks
+mobile/*.keystore
+mobile/*.p8
+mobile/*.p12
+mobile/*.key
+mobile/*.mobileprovision
+mobile/*.orig.*
+mobile/web-build/
+*.hprof
+
+# Expo
+.expo/
+expo-env.d.ts
+*.expo
+
+# Metro
+.metro-health-check*
+
+# Move/Aptos build artifacts
+contracts/build/
+contracts/.aptos/
+contracts/.movement/
+**/*.mv
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Cache
+.cache/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Secrets and credentials
+*.pem
+*.key
+credentials.json
+service-account.json
+secrets/
+.secrets/
+
+# Claude Code local files (keep .claude/commands if exists)
+.mcp.json
+
+# Package manager locks (optional - uncomment if you want to ignore)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Misc
+*.tgz
+.turbo/
