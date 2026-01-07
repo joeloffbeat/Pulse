@@ -4,22 +4,27 @@ Pulse is a Tinder-style binary prediction game where users swipe right (bullish)
 
 ---
 
-## Git Configuration (MANDATORY)
+## Git Configuration
 
-**ALWAYS use these credentials for ALL commits and pushes:**
-
-| Setting | Value |
-|---------|-------|
-| **User Name** | `gabrielantonyxaviour` |
-| **User Email** | `gabrielantony56@gmail.com` |
-
-Before making any commits, ALWAYS run:
-```bash
-git config user.name "gabrielantonyxaviour"
-git config user.email "gabrielantony56@gmail.com"
+**Account:** JoelOffBeat (Joel Off beat)
+```
+user.name: JoelOffBeat
+user.email: joeloffbeat@gmail.com
 ```
 
-**DO NOT use any other git identity for this project.**
+### Auto-Commit Rule
+**IMPORTANT:** After EVERY response that modifies code/files, you MUST run:
+```bash
+cd /Users/gabrielantonyxaviour/Documents/starters/movement/Pulse && \
+git add -A && \
+git commit -m "$(cat <<'EOF'
+<concise description of changes>
+EOF
+)" && \
+git push
+```
+
+This ensures all changes are tracked and pushed to JoelOffBeat/Pulse.
 
 ---
 
