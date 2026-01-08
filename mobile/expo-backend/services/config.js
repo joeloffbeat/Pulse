@@ -5,17 +5,23 @@
 
 import { Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk';
 
-// Shinami API Configuration
-const SHINAMI_API_KEY = process.env.SHINAMI_API_KEY;
 const SHINAMI_NODE_SERVICE_URL = 'https://api.shinami.com/aptos/node/v1';
 const MOVEMENT_TESTNET_RPC = 'https://testnet.movementnetwork.xyz/v1';
+
+/**
+ * Get Shinami API key (read at call time, after dotenv loads)
+ */
+function getShinamiKey() {
+    return process.env.SHINAMI_KEY;
+}
 
 /**
  * Get the RPC URL (Shinami Node Service or fallback)
  */
 export function getRpcUrl() {
-    if (SHINAMI_API_KEY) {
-        return `${SHINAMI_NODE_SERVICE_URL}/${SHINAMI_API_KEY}`;
+    const key = getShinamiKey();
+    if (key) {
+        return `${SHINAMI_NODE_SERVICE_URL}/${key}`;
     }
     return MOVEMENT_TESTNET_RPC;
 }

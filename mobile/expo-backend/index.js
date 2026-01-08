@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+dotenv.config(); // Must run BEFORE other imports that read env vars
+
 import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
@@ -22,8 +24,6 @@ import pulseRoutes from './routes/pulse.js';
 // Shinami Gas Station integration
 import { getRpcUrl, isGasStationEnabled, shouldSponsor } from './services/shinami.js';
 
-dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 4002;
 
@@ -35,7 +35,7 @@ const RPC_URL = getRpcUrl();
 const FAUCET_URL = 'https://faucet.testnet.movementnetwork.xyz/mint';
 
 // Shinami API for Gas Station
-const SHINAMI_API_KEY = process.env.SHINAMI_API_KEY;
+const SHINAMI_API_KEY = process.env.SHINAMI_KEY;
 const SHINAMI_GAS_URL = 'https://api.shinami.com/aptos/gas/v1';
 
 const aptosConfig = new AptosConfig({
