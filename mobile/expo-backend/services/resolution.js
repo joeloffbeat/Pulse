@@ -1,14 +1,8 @@
-import { Aptos, AptosConfig, Network, Ed25519PrivateKey, Account } from '@aptos-labs/ts-sdk';
+import { Ed25519PrivateKey, Account } from '@aptos-labs/ts-sdk';
 import { getPriceUpdateData, PRICE_FEEDS } from './pyth.js';
+import { getSharedAptosClient, PULSE_ADDRESS } from './config.js';
 
-const MOVEMENT_TESTNET_FULLNODE = 'https://testnet.movementnetwork.xyz/v1';
-export const PULSE_ADDRESS = process.env.PULSE_ADDRESS || '0x78a349ed835712bb5056761595110896ccf3497de4ef8cc719b32e8e';
-
-const aptosConfig = new AptosConfig({
-    network: Network.CUSTOM,
-    fullnode: MOVEMENT_TESTNET_FULLNODE,
-});
-const aptos = new Aptos(aptosConfig);
+const aptos = getSharedAptosClient();
 
 /**
  * Get markets pending resolution (resolution_time passed but not settled)

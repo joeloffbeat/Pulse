@@ -34,7 +34,7 @@ export function useMovementWallet() {
           throw new Error("❌ Failed to generate transaction hash");
         }
 
-        const { hash, rawTxnHex } = await hashResponse.json();
+        const { hash, rawTxnHex, sponsored } = await hashResponse.json();
 
         // Step 2: Sign hash using Privy
         const { signature } = await signRawHash({
@@ -51,6 +51,7 @@ export function useMovementWallet() {
             rawTxnHex,
             publicKey,
             signature,
+            sponsored, // Pass sponsorship flag for Shinami Gas Station
           }),
         });
 

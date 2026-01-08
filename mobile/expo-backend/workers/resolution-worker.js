@@ -6,20 +6,14 @@
  */
 
 import dotenv from 'dotenv';
-import { Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk';
-import * as resolution from '../services/resolution.js';
-import { getLatestPrices } from '../services/pyth.js';
-
 dotenv.config();
 
-const POLL_INTERVAL = 60_000; // 1 minute
-const PULSE_ADDRESS = process.env.PULSE_ADDRESS || '0x78a349ed835712bb5056761595110896ccf3497de4ef8cc719b32e8e';
+import * as resolution from '../services/resolution.js';
+import { getLatestPrices } from '../services/pyth.js';
+import { getSharedAptosClient, PULSE_ADDRESS } from '../services/config.js';
 
-const aptosConfig = new AptosConfig({
-    network: Network.CUSTOM,
-    fullnode: 'https://testnet.movementnetwork.xyz/v1',
-});
-const aptos = new Aptos(aptosConfig);
+const POLL_INTERVAL = 60_000; // 1 minute
+const aptos = getSharedAptosClient();
 
 async function getMarketsToResolve() {
     try {

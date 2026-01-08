@@ -45,6 +45,44 @@
 
 ---
 
+## Shinami Integration (Gas Station & Node Service)
+
+Pulse uses [Shinami](https://shinami.com) for:
+- **Gas Station**: Sponsor transactions for gasless UX
+- **Node Service**: Reliable RPC endpoints
+
+### Setup
+
+1. Sign up at [app.shinami.com](https://app.shinami.com)
+2. Create an API key for **Movement** network
+3. Fund your Gas Station wallet
+
+### Environment Variable
+
+```bash
+# Add to mobile/expo-backend/.env
+SHINAMI_API_KEY=your_shinami_api_key_here
+```
+
+### Sponsored Transactions (P0 + P1)
+
+When `SHINAMI_API_KEY` is set, these transactions are **FREE for users**:
+
+| Transaction | Function | Impact |
+|-------------|----------|--------|
+| **Place Bet** | `position::place_bet` | Every swipe is gasless |
+| **Claim Winnings** | `position::claim_winnings` | Free to collect rewards |
+| **Welcome Bonus** | `bonus::claim_welcome_bonus` | Onboarding is frictionless |
+| **Register Referral** | `referral::register_referral` | Growth feature is free |
+
+### Gas Savings
+
+- ~0.002 MOVE per transaction sponsored
+- ~0.036 MOVE/user/day saved
+- Check status: `GET /gas-station/status`
+
+---
+
 ## Backend API
 
 | Property | Value |
@@ -67,6 +105,8 @@
 | `/bonus/:address` | GET | User's bonus balance |
 | `/bonus/claim` | POST | Claim welcome bonus |
 | `/faucet` | POST | Request testnet tokens |
+| `/gas-station/status` | GET | Shinami Gas Station fund info |
+| `/health` | GET | Health check with Shinami status |
 
 ---
 

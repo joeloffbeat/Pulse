@@ -1,13 +1,9 @@
-import { Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk';
+import { getSharedAptosClient, PULSE_ADDRESS } from './config.js';
 
-const MOVEMENT_TESTNET_FULLNODE = 'https://testnet.movementnetwork.xyz/v1';
-export const PULSE_ADDRESS = process.env.PULSE_ADDRESS || '0x78a349ed835712bb5056761595110896ccf3497de4ef8af46acf8cc719b32e8e';
+// Re-export for backwards compatibility
+export { PULSE_ADDRESS };
 
-const aptosConfig = new AptosConfig({
-    network: Network.CUSTOM,
-    fullnode: MOVEMENT_TESTNET_FULLNODE,
-});
-const aptos = new Aptos(aptosConfig);
+const aptos = getSharedAptosClient();
 
 // Get all active markets
 export async function getActiveMarkets() {

@@ -1,13 +1,6 @@
-import { Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk';
-import { PULSE_ADDRESS } from './markets.js';
+import { getSharedAptosClient, PULSE_ADDRESS } from './config.js';
 
-const MOVEMENT_TESTNET_FULLNODE = 'https://testnet.movementnetwork.xyz/v1';
-
-const aptosConfig = new AptosConfig({
-    network: Network.CUSTOM,
-    fullnode: MOVEMENT_TESTNET_FULLNODE,
-});
-const aptos = new Aptos(aptosConfig);
+const aptos = getSharedAptosClient();
 
 // Get user's positions
 export async function getUserPositions(userAddress) {
