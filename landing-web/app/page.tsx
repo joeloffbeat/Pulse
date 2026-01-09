@@ -50,7 +50,7 @@ export default function Home() {
         {/* Header */}
         <div className="mb-12 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-pink-500">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-rose-500">
               <Zap className="h-6 w-6 text-white" />
             </div>
             <h1 className="text-4xl font-bold text-white">{CONFIG.appName}</h1>
@@ -75,21 +75,21 @@ export default function Home() {
           <TabsList className="mb-8 grid w-full grid-cols-3 bg-zinc-800/50">
             <TabsTrigger
               value="install"
-              className="data-[state=active]:bg-purple-600"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-rose-500"
             >
               <Smartphone className="mr-2 h-4 w-4" />
               Install APK
             </TabsTrigger>
             <TabsTrigger
               value="browser"
-              className="data-[state=active]:bg-purple-600"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-rose-500"
             >
               <Globe className="mr-2 h-4 w-4" />
               Try in Browser
             </TabsTrigger>
             <TabsTrigger
               value="build"
-              className="data-[state=active]:bg-purple-600"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-rose-500"
             >
               <Terminal className="mr-2 h-4 w-4" />
               Build Locally
@@ -117,7 +117,7 @@ export default function Home() {
                       Scan with your Android device camera
                     </p>
                     <Button
-                      className="bg-purple-600 hover:bg-purple-700"
+                      className="bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600"
                       onClick={() => window.open(CONFIG.apkUrl, "_blank")}
                     >
                       <Download className="mr-2 h-4 w-4" />
@@ -227,7 +227,7 @@ export default function Home() {
                         {i + 1}. {step.label}
                       </p>
                       <div className="flex items-center justify-between">
-                        <code className="text-sm text-purple-400">
+                        <code className="text-sm text-orange-400">
                           {step.cmd}
                         </code>
                         <Button
