@@ -13,18 +13,7 @@ user.email: joeloffbeat@gmail.com
 ```
 
 ### Auto-Commit Rule
-**IMPORTANT:** After EVERY response that modifies code/files, you MUST run:
-```bash
-cd /Users/gabrielantonyxaviour/Documents/starters/movement/Pulse && \
-git add -A && \
-git commit -m "$(cat <<'EOF'
-<concise description of changes>
-EOF
-)" && \
-git push
-```
-
-This ensures all changes are tracked and pushed to JoelOffBeat/Pulse.
+**After completing ANY command/prompt, commit and push your changes to GitHub.**
 
 ---
 
@@ -195,6 +184,23 @@ When asked to run a prompt:
 
 ---
 
+## Vercel Deployment
+
+### Landing Web (`landing-web/`)
+- **Deployed via Vercel CLI** (NOT git auto-deploy)
+- Vercel project name: `pulse-movement-demo`
+- This is a Next.js landing page that directs users to download the mobile app
+
+**Deployment command:**
+```bash
+cd landing-web
+vercel --prod
+```
+
+**Important:** Do NOT assume git push triggers deployment. Always use `vercel --prod` from the `landing-web` directory.
+
+---
+
 ## Project Structure
 
 ```
@@ -210,6 +216,9 @@ Pulse/
 │   ├── sources/           # Move modules
 │   ├── tests/             # Move tests
 │   └── Move.toml          # Package config
+├── landing-web/            # Next.js landing page (Vercel CLI deploy)
+│   ├── app/               # Next.js app router
+│   └── .vercel/           # Vercel project config
 ├── api/                    # Backend API (Next.js or Express)
 │   ├── routes/            # API routes
 │   ├── services/          # Business logic
